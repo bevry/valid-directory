@@ -1,0 +1,110 @@
+{
+  "name": "valid-directory",
+  "version": "1.0.0",
+  "description": "Check whether or not a directory and its descendants are valid",
+  "homepage": "https://github.com/bevry/valid-directory",
+  "license": "MIT",
+  "keywords": [
+    "valid",
+    "windows",
+    "fs",
+    "validate",
+    "detect",
+    "check",
+    "is",
+    "test"
+  ],
+  "badges": {
+    "list": [
+      "travisci",
+      "npmversion",
+      "npmdownloads",
+      "daviddm",
+      "daviddmdev",
+      "---",
+      "patreon",
+      "opencollective",
+      "flattr",
+      "paypal",
+      "bitcoin",
+      "wishlist"
+    ],
+    "config": {
+      "patreonUsername": "bevry",
+      "opencollectiveUsername": "bevry",
+      "flattrUsername": "balupton",
+      "paypalURL": "https://bevry.me/paypal",
+      "bitcoinURL": "https://bevry.me/bitcoin",
+      "wishlistURL": "https://bevry.me/wishlist"
+    }
+  },
+  "author": "2018+ Benjamin Lupton <b@lupton.cc>",
+  "maintainers": [
+    "Benjamin Lupton <b@lupton.cc>"
+  ],
+  "contributors": [
+    "Benjamin Lupton (http://balupton.com)"
+  ],
+  "bugs": {
+    "url": "https://github.com/bevry/valid-directory/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bevry/valid-directory.git"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "editions": [
+    {
+      "description": "esnext source code with require for modules",
+      "directory": "source",
+      "entry": "index.js",
+      "syntaxes": [
+        "javascript",
+        "esnext",
+        "require"
+      ],
+      "engines": {
+        "node": ">=8",
+        "browsers": false
+      }
+    }
+  ],
+  "preferGlobal": true,
+  "bin": "source/bin.js",
+  "main": "source/index.js",
+  "dependencies": {
+    "readdir-cluster": "^1.1.0",
+    "valid-filename": "^2.0.1"
+  },
+  "devDependencies": {
+    "assert-helpers": "^4.5.1",
+    "documentation": "^8.1.2",
+    "eslint": "^5.5.0",
+    "joe": "^2.0.2",
+    "joe-reporter-console": "^2.0.2",
+    "projectz": "^1.4.0",
+    "surge": "^0.20.1"
+  },
+  "scripts": {
+    "our:clean": "rm -Rf ./docs ./edition:* ./es2015 ./es5 ./out",
+    "our:compile": "echo no need for this project",
+    "our:deploy": "echo no need for this project",
+    "our:meta": "npm run our:meta:docs && npm run our:meta:projectz",
+    "our:meta:docs": "documentation build -f html -o ./docs -g --shallow ./source/**.js",
+    "our:meta:projectz": "projectz compile",
+    "our:release": "npm run our:release:prepare && npm run our:release:check-changelog && npm run our:release:check-dirty && npm run our:release:tag && npm run our:release:push",
+    "our:release:check-changelog": "cat ./HISTORY.md | grep v$npm_package_version || (echo add a changelog entry for v$npm_package_version && exit -1)",
+    "our:release:check-dirty": "git diff --exit-code",
+    "our:release:prepare": "npm run our:clean && npm run our:compile && npm run our:test && npm run our:meta",
+    "our:release:push": "git push origin master && git push origin --tags",
+    "our:release:tag": "export MESSAGE=$(cat ./HISTORY.md | sed -n \"/## v$npm_package_version/,/##/p\" | sed 's/## //' | awk 'NR>1{print buf}{buf = $0}') && test \"$MESSAGE\" || (echo 'proper changelog entry not found' && exit -1) && git tag v$npm_package_version -am \"$MESSAGE\"",
+    "our:setup": "npm run our:setup:npm",
+    "our:setup:npm": "npm install",
+    "our:test": "npm run our:verify && npm test",
+    "our:verify": "npm run our:verify:eslint",
+    "our:verify:eslint": "eslint --fix ./source",
+    "test": "node --harmony ./source/test.js --joe-reporter=console"
+  }
+}
