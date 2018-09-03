@@ -78,6 +78,13 @@ Run `npm install -g valid-directory` then run against the current working direct
 
 Exit code will be `1` if validation failed to execute, `2` if validation failed, and `0` if validation passed.
 
+### Packages
+
+To validate your packages before you publish them, you can do the following:
+
+1. Inside your package directory, run: `npm install --save-dev valid-directory`
+2. Then append `&& npx valid-directory` to your `test` script inside your `package.json` file
+
 
 
 <!-- HISTORY/ -->
