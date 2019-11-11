@@ -79,7 +79,7 @@
     "valid-filename": "^2.0.1"
   },
   "devDependencies": {
-    "assert-helpers": "^4.5.1",
+    "assert-helpers": "^5.0.0",
     "documentation": "^8.1.2",
     "eslint": "^5.5.0",
     "joe": "^2.0.2",
