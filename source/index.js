@@ -19,7 +19,7 @@ const validFilename = require('valid-filename')
  * @returns {void}
  * @private
  */
-function validator (fullPath, relativePath) {
+function validator(fullPath, relativePath) {
 	const valid = validFilename(relativePath)
 	if (!valid) {
 		this.push(fullPath)
@@ -32,16 +32,14 @@ function validator (fullPath, relativePath) {
  * @param {validateCallback} next - the completion callback
  * @returns {void}
  */
-function validate (fullPath, next) {
+function validate(fullPath, next) {
 	const invalidPaths = []
-	readdir(fullPath, validator.bind(invalidPaths), function (err) {
+	readdir(fullPath, validator.bind(invalidPaths), function(err) {
 		if (err) {
 			return next(err)
-		}
-		else if (invalidPaths.length) {
+		} else if (invalidPaths.length) {
 			return next(null, false, invalidPaths)
-		}
-		else {
+		} else {
 			return next(null, true)
 		}
 	})
