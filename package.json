@@ -1,6 +1,6 @@
 {
   "name": "valid-directory",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Check whether or not a directory and its descendants are valid",
   "homepage": "https://github.com/bevry/valid-directory",
   "license": "MIT",
@@ -49,7 +49,8 @@
     "Benjamin Lupton <b@lupton.cc>"
   ],
   "contributors": [
-    "Benjamin Lupton (http://balupton.com)"
+    "Benjamin Lupton (http://balupton.com)",
+    "dependabot-preview[bot] (http://github.com/apps/dependabot-preview)"
   ],
   "bugs": {
     "url": "https://github.com/bevry/valid-directory/issues"
@@ -83,9 +84,9 @@
     "valid-filename": "^3.1.0"
   },
   "devDependencies": {
-    "assert-helpers": "^5.6.0",
+    "assert-helpers": "^5.7.0",
     "eslint": "^6.7.2",
-    "eslint-config-bevry": "^2.1.0",
+    "eslint-config-bevry": "^2.2.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",
     "jsdoc": "^3.6.3",
