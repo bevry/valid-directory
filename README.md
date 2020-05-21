@@ -35,62 +35,19 @@ Check whether or not a directory and its descendants are valid
 
 Validity determined via the [`valid-filename` package](https://github.com/sindresorhus/valid-filename).
 
-
-<!-- INSTALL/ -->
-
-<h2>Install</h2>
-
-<a href="https://npmjs.com" title="npm is a package manager for javascript"><h3>npm</h3></a>
-<h4>Install Globally</h4>
-<ul>
-<li>Install: <code>npm install --global valid-directory</code></li>
-<li>Executable: <code>valid-directory</code></li>
-</ul>
-<h4>Install Locally</h4>
-<ul>
-<li>Install: <code>npm install --save valid-directory</code></li>
-<li>Executable: <code>npx valid-directory</code></li>
-<li>Require: <code>require('valid-directory')</code></li>
-</ul>
-
-<h3><a href="https://editions.bevry.me" title="Editions are the best way to produce and consume packages you care about.">Editions</a></h3>
-
-<p>This package is published with the following editions:</p>
-
-<ul><li><code>valid-directory</code> aliases <code>valid-directory/source/index.js</code></li>
-<li><code>valid-directory/source/index.js</code> is esnext source code with require for modules</li></ul>
-
-<p>Environments older than Node.js v8 may need <a href="https://babeljs.io/docs/usage/polyfill/" title="A polyfill that emulates missing ECMAScript environment features">Babel's Polyfill</a> or something similar.</p>
-
-<h3><a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a></h3>
-
-This project provides its type information via inline <a href="http://usejsdoc.org" title="JSDoc is an API documentation generator for JavaScript, similar to Javadoc or phpDocumentor">JSDoc Comments</a>. To make use of this in <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a>, set your <code>maxNodeModuleJsDepth</code> compiler option to `5` or thereabouts. You can accomlish this via your `tsconfig.json` file like so:
-
-``` json
-{
-  "compilerOptions": {
-    "maxNodeModuleJsDepth": 5
-  }
-}
-```
-
-<!-- /INSTALL -->
-
-
 ## Usage
+
+[Complete API Documentation.](http://master.valid-directory.bevry.surge.sh/docs/index.html)
 
 ### API
 
-[Complete API Documentation.](http://master.valid-directory.bevry.surge.sh/docs/)
-
-``` javascript
+```javascript
 const validate = require('valid-directory')
 validate(process.cwd(), function (error, valid, invalidPaths) {
     if (error) throw error
     else if (valid) {
         console.log('ok')
-    }
-    else {
+    } else {
         console.log('invalid due to these:', invalidPaths)
     }
 })
@@ -109,6 +66,44 @@ To validate your packages before you publish them, you can do the following:
 1. Inside your package directory, run: `npm install --save-dev valid-directory`
 2. Then append `&& npx valid-directory` to your `test` script inside your `package.json` file
 
+<!-- INSTALL/ -->
+
+<h2>Install</h2>
+
+<a href="https://npmjs.com" title="npm is a package manager for javascript"><h3>npm</h3></a>
+<h4>Install Globally</h4>
+<ul>
+<li>Install: <code>npm install --global valid-directory</code></li>
+<li>Executable: <code>valid-directory</code></li>
+</ul>
+<h4>Install Locally</h4>
+<ul>
+<li>Install: <code>npm install --save valid-directory</code></li>
+<li>Executable: <code>npx valid-directory</code></li>
+<li>Import: <code>import * as pkg from ('valid-directory')</code></li>
+<li>Require: <code>const pkg = require('valid-directory')</code></li>
+</ul>
+
+<h3><a href="https://editions.bevry.me" title="Editions are the best way to produce and consume packages you care about.">Editions</a></h3>
+
+<p>This package is published with the following editions:</p>
+
+<ul><li><code>valid-directory</code> aliases <code>valid-directory/source/index.js</code></li>
+<li><code>valid-directory/source/index.js</code> is <a href="https://en.wikipedia.org/wiki/ECMAScript#ES.Next" title="ECMAScript Next">ESNext</a> source code for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> with <a href="https://nodejs.org/dist/latest-v5.x/docs/api/modules.html" title="Node/CJS Modules">Require</a> for modules</li></ul>
+
+<h3><a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a></h3>
+
+This project provides its type information via inline <a href="http://usejsdoc.org" title="JSDoc is an API documentation generator for JavaScript, similar to Javadoc or phpDocumentor">JSDoc Comments</a>. To make use of this in <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a>, set your <code>maxNodeModuleJsDepth</code> compiler option to `5` or thereabouts. You can accomlish this via your `tsconfig.json` file like so:
+
+``` json
+{
+  "compilerOptions": {
+    "maxNodeModuleJsDepth": 5
+  }
+}
+```
+
+<!-- /INSTALL -->
 
 
 <!-- HISTORY/ -->
@@ -137,7 +132,7 @@ To validate your packages before you publish them, you can do the following:
 
 These amazing people are maintaining this project:
 
-<ul><li>Benjamin Lupton</li></ul>
+<ul><li><a href="https://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/bevry/valid-directory/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/valid-directory">view contributions</a></li></ul>
 
 <h3>Sponsors</h3>
 
@@ -157,8 +152,7 @@ No sponsors yet! Will you be the first?
 
 These amazing people have contributed code to this project:
 
-<ul><li><a href="http://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/bevry/valid-directory/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/valid-directory">view contributions</a></li>
-<li><a href="http://github.com/apps/dependabot-preview">dependabot-preview[bot]</a> — <a href="https://github.com/bevry/valid-directory/commits?author=dependabot-preview[bot]" title="View the GitHub contributions of dependabot-preview[bot] on repository bevry/valid-directory">view contributions</a></li></ul>
+<ul><li><a href="https://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/bevry/valid-directory/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/valid-directory">view contributions</a></li></ul>
 
 <a href="https://github.com/bevry/valid-directory/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a>
 
@@ -171,7 +165,7 @@ These amazing people have contributed code to this project:
 
 Unless stated otherwise all works are:
 
-<ul><li>Copyright &copy; 2018+ Benjamin Lupton</li></ul>
+<ul><li>Copyright &copy; 2018+ <a href="https://balupton.com">Benjamin Lupton</a></li></ul>
 
 and licensed under:
 

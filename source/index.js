@@ -34,7 +34,7 @@ function validator(fullPath, relativePath) {
  */
 function validate(fullPath, next) {
 	const invalidPaths = []
-	readdir(fullPath, validator.bind(invalidPaths), function(err) {
+	readdir(fullPath, validator.bind(invalidPaths), function (err) {
 		if (err) {
 			return next(err)
 		} else if (invalidPaths.length) {

@@ -4,7 +4,7 @@
 const validate = require('./')
 const path = process.argv[2] || process.cwd()
 
-validate(path, function(err, valid, invalidPaths) {
+validate(path, function (err, valid, invalidPaths) {
 	if (err) {
 		console.error(`${path} failed to validate`)
 		console.error(err)
