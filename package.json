@@ -1,6 +1,6 @@
 {
   "name": "valid-directory",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "Check whether or not a directory and its descendants are valid",
   "homepage": "https://github.com/bevry/valid-directory",
   "license": "MIT",
