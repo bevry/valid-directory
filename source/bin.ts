@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-'use strict'
 
-const validate = require('./')
+import validate from './'
 const path = process.argv[2] || process.cwd()
 
 validate(path, function (err, valid, invalidPaths) {
@@ -15,7 +14,7 @@ validate(path, function (err, valid, invalidPaths) {
 		console.log(`${path} is valid`)
 	} else {
 		console.error(
-			`${path} is invalid, due to the following paths:\n${invalidPaths.join(
+			`${path} is invalid, due to the following paths:\n${invalidPaths?.join(
 				'\n'
 			)}`
 		)

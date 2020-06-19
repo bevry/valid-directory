@@ -1,8 +1,7 @@
-'use strict'
+import { equal, contains, errorEqual } from 'assert-helpers'
+import kava from 'kava'
+import validate from './'
 
-const { equal, contains, errorEqual } = require('assert-helpers')
-const kava = require('kava')
-const validate = require('./')
 const pathUtil = require('path')
 const { exec } = require('child_process')
 const paths = {
@@ -25,7 +24,8 @@ kava.suite('valid-directory', function (suite) {
 			validate(paths.invalid, function (error, valid, invalidPaths) {
 				equal(error, null, 'error is null')
 				equal(valid, false, 'valid is false')
-				equal(invalidPaths.length > 0, true, 'invalid paths has entries')
+				if (invalidPaths)
+					equal(invalidPaths.length > 0, true, 'invalid paths has entries')
 				done()
 			})
 		})
@@ -34,8 +34,8 @@ kava.suite('valid-directory', function (suite) {
 		suite('cwd', function (suite, test) {
 			test('valid', function (done) {
 				exec(`node "${paths.bin}"`, { cwd: paths.valid }, function (
-					error,
-					stdout
+					error: any,
+					stdout: any
 				) {
 					equal(error, null, 'error is null')
 					contains(stdout.toString(), `${paths.valid} is valid`)
@@ -44,9 +44,9 @@ kava.suite('valid-directory', function (suite) {
 			})
 			test('invalid', function (done) {
 				exec(`node "${paths.bin}"`, { cwd: paths.invalid }, function (
-					error,
-					stdout,
-					stderr
+					error: any,
+					stdout: any,
+					stderr: any
 				) {
 					errorEqual(error, 'Command failed')
 					contains(stderr.toString(), `${paths.invalid} is invalid`)
@@ -59,7 +59,7 @@ kava.suite('valid-directory', function (suite) {
 				exec(
 					`node "${paths.bin}" "${paths.valid}"`,
 					{ cwd: paths.root },
-					function (error, stdout) {
+					function (error: any, stdout: any) {
 						equal(error, null, 'error is null')
 						contains(stdout.toString(), `${paths.valid} is valid`)
 						done()
@@ -70,7 +70,7 @@ kava.suite('valid-directory', function (suite) {
 				exec(
 					`node "${paths.bin}" "${paths.invalid}"`,
 					{ cwd: paths.root },
-					function (error, stdout, stderr) {
+					function (error: any, stdout: any, stderr: any) {
 						errorEqual(error, 'Command failed')
 						contains(stderr.toString(), `${paths.invalid} is invalid`)
 						done()

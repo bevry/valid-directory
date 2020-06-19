@@ -1,7 +1,5 @@
-'use strict'
-
-const readdir = require('readdir-cluster')
-const validFilename = require('valid-filename')
+import readdir from 'readdir-cluster'
+import validFilename from 'valid-filename'
 
 /**
  * The validate completion callback
@@ -11,6 +9,11 @@ const validFilename = require('valid-filename')
  * @param {Array<string>} invalidPaths - if validation failed, this an array of the full paths that failed
  * @returns {void}
  */
+type validateCallback = (
+	error: Error | null,
+	valid?: boolean,
+	invalidPaths?: string[]
+) => void
 
 /**
  * Iterator for readdir-cluster that validates the paths using valid-filename
@@ -19,7 +22,7 @@ const validFilename = require('valid-filename')
  * @returns {void}
  * @private
  */
-function validator(fullPath, relativePath) {
+function validator(this: any, fullPath: string, relativePath: string) {
 	const valid = validFilename(relativePath)
 	if (!valid) {
 		this.push(fullPath)
@@ -32,9 +35,9 @@ function validator(fullPath, relativePath) {
  * @param {validateCallback} next - the completion callback
  * @returns {void}
  */
-function validate(fullPath, next) {
-	const invalidPaths = []
-	readdir(fullPath, validator.bind(invalidPaths), function (err) {
+export default function validate(fullPath: string, next: validateCallback) {
+	const invalidPaths: any = []
+	readdir(fullPath, validator.bind(invalidPaths), function (err: Error) {
 		if (err) {
 			return next(err)
 		} else if (invalidPaths.length) {
