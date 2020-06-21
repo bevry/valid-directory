@@ -595,9 +595,9 @@ escape-string-regexp@^2.0.0:
   integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
 
 eslint-config-bevry@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-bevry/-/eslint-config-bevry-3.8.0.tgz#f04c068b290764138f32e3dbfd08d2709b0de5a4"
-  integrity sha512-+qI+WzCja2JSPwK99VQjcgIDuOocjxghSl95XZy8ucrcxCpW4E9LfHJAMlaTrDect+ZkKTEvGIDZ/2wKRpNIrw==
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-bevry/-/eslint-config-bevry-3.11.0.tgz#d49d8c5e0979010671ebc34bb3db77aeb9f4c3c0"
+  integrity sha512-4U8fGl9QATcNZx5ZuW5vQbNrSeoziv6pWT69zs/yNwtvXZmdL4+NtppE06BjB/FyqO3AOyCFkXW2srHeY1Pq2A==
   dependencies:
     semver "^7.3.2"
 
