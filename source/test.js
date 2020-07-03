@@ -2,7 +2,7 @@
 
 const { equal, contains, errorEqual } = require('assert-helpers')
 const kava = require('kava')
-const validate = require('./')
+const validate = require('./index.js')
 const pathUtil = require('path')
 const { exec } = require('child_process')
 const paths = {
