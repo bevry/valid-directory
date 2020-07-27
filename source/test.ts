@@ -1,6 +1,6 @@
 import { equal, contains, errorEqual } from 'assert-helpers'
 import kava from 'kava'
-import validate from './'
+import validate, { Errnull } from './index.js'
 
 const pathUtil = require('path')
 const { exec } = require('child_process')
@@ -14,28 +14,32 @@ const paths = {
 kava.suite('valid-directory', function (suite) {
 	suite('api', function (suite, test) {
 		test('valid', function (done) {
-			validate(paths.valid, function (error, valid) {
-				equal(error, null, 'error is null')
-				equal(valid, true, 'valid is true')
-				done()
-			})
+			validate(paths.valid)
+				.then((path) => {
+					equal(path, paths.valid, 'path is valid')
+				})
+				.catch((error) => {
+					equal(1, 2, 'path is invalid')
+				})
+			done()
 		})
 		test('invalid', function (done) {
-			validate(paths.invalid, function (error, valid, invalidPaths) {
-				equal(error, null, 'error is null')
-				equal(valid, false, 'valid is false')
-				if (invalidPaths)
-					equal(invalidPaths.length > 0, true, 'invalid paths has entries')
-				done()
-			})
+			validate(paths.invalid)
+				.then((path) => {
+					equal(1, 2, 'path is valid')
+				})
+				.catch(() => {
+					equal(1, 1, 'path is invalid')
+				})
+			done()
 		})
 	})
 	suite('bin', function (suite) {
 		suite('cwd', function (suite, test) {
 			test('valid', function (done) {
 				exec(`node "${paths.bin}"`, { cwd: paths.valid }, function (
-					error: any,
-					stdout: any
+					error: Errnull,
+					stdout: string
 				) {
 					equal(error, null, 'error is null')
 					contains(stdout.toString(), `${paths.valid} is valid`)
@@ -44,9 +48,9 @@ kava.suite('valid-directory', function (suite) {
 			})
 			test('invalid', function (done) {
 				exec(`node "${paths.bin}"`, { cwd: paths.invalid }, function (
-					error: any,
-					stdout: any,
-					stderr: any
+					error: Errnull,
+					stdout: string,
+					stderr: string
 				) {
 					errorEqual(error, 'Command failed')
 					contains(stderr.toString(), `${paths.invalid} is invalid`)
@@ -59,7 +63,7 @@ kava.suite('valid-directory', function (suite) {
 				exec(
 					`node "${paths.bin}" "${paths.valid}"`,
 					{ cwd: paths.root },
-					function (error: any, stdout: any) {
+					function (error: Errnull, stdout: string) {
 						equal(error, null, 'error is null')
 						contains(stdout.toString(), `${paths.valid} is valid`)
 						done()
@@ -70,7 +74,7 @@ kava.suite('valid-directory', function (suite) {
 				exec(
 					`node "${paths.bin}" "${paths.invalid}"`,
 					{ cwd: paths.root },
-					function (error: any, stdout: any, stderr: any) {
+					function (error: Errnull, stdout: any, stderr: any) {
 						errorEqual(error, 'Command failed')
 						contains(stderr.toString(), `${paths.invalid} is invalid`)
 						done()
