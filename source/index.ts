@@ -1,40 +1,36 @@
 import readdir from 'readdir-cluster'
 import validFilename from 'valid-filename'
 
-export type Errnull = Error | null
+/** Array of paths that are invalid */
+export type InvalidPaths = string[]
 
-/**
- * The validate completion callback
- */
-type validateCallback = (
-	error: Errnull,
-	valid?: boolean,
-	invalidPaths?: string[]
-) => void
+/** Whether or not the directory was valid */
+export type IsValidDirectory = [false, InvalidPaths] | [true]
 
-/**
- * Iterator for readdir-cluster that validates the paths using valid-filename
- */
-function validator(this: any, fullPath: string, relativePath: string) {
+/** Iterator for readdir-cluster that validates the paths using valid-filename */
+export function validator(
+	this: InvalidPaths,
+	fullPath: string,
+	relativePath: string
+) {
 	const valid = validFilename(relativePath)
+
 	if (!valid) {
 		this.push(fullPath)
 	}
 }
 
-/**
- * Validate a directory and its descendants
- */
-export default function validate(fullPath: string): Promise<Errnull | String> {
-	const invalidPaths: string[] = []
-	return new Promise((resolve, reject) => {
+/** Validate a directory and its descendants */
+export default function validate(fullPath: string): Promise<IsValidDirectory> {
+	return new Promise(function (resolve, reject) {
+		const invalidPaths: InvalidPaths = []
 		readdir(fullPath, validator.bind(invalidPaths), function (err: Error) {
 			if (err) {
-				reject(err)
+				return reject(err)
 			} else if (invalidPaths.length) {
-				reject(new Error('Invalid paths:' + invalidPaths?.join('\n')))
+				return resolve([false, invalidPaths])
 			} else {
-				return resolve(fullPath)
+				return resolve([true])
 			}
 		})
 	})
