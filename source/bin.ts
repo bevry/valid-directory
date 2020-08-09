@@ -4,12 +4,13 @@ import validate, { IsValidDirectory } from './index.js'
 const path = process.argv[2] || process.cwd()
 
 validate(path)
-	.then((valid: IsValidDirectory) => {
-		if (valid[0]) {
+	.then(([isValid, invalidPaths]: IsValidDirectory) => {
+		if (isValid) {
 			console.log(`${path} is valid`)
 		} else {
 			console.error(
-				`${path} is invalid, due to the following paths:\n${valid[1]}`
+				`${path} is invalid, due to the following paths:\n`,
+				invalidPaths
 			)
 		}
 	})

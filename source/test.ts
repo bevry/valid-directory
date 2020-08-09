@@ -15,23 +15,20 @@ kava.suite('valid-directory', function (suite) {
 	suite('api', function (suite, test) {
 		test('valid', function (done) {
 			validate(paths.valid)
-				.then((path: IsValidDirectory) => {
-					equal(path[0], true, 'path is valid')
+				.then(([isValid]: IsValidDirectory) => {
+					equal(isValid, true, 'path is valid')
 					done()
 				})
-				.catch((error) => {
-					done(error)
-				})
+				.catch(done)
 		})
 		test('invalid', function (done) {
 			validate(paths.invalid)
-				.then((path: IsValidDirectory) => {
-					equal(path[0], false, 'path is invalid')
+				.then(([isValid, invalidPaths]: IsValidDirectory) => {
+					equal(isValid, false, 'path is invalid')
+					equal(invalidPaths?.length, 6)
 					done()
 				})
-				.catch((error) => {
-					done(error)
-				})
+				.catch(done)
 		})
 	})
 	suite('bin', function (suite) {
@@ -73,7 +70,7 @@ kava.suite('valid-directory', function (suite) {
 				exec(
 					`node "${paths.bin}" "${paths.invalid}"`,
 					{ cwd: paths.root },
-					function (error: Error, stdout: any, stderr: any) {
+					function (error: Error, stdout: string, stderr: string) {
 						contains(stderr.toString(), `${paths.invalid} is invalid`)
 						done()
 					}
