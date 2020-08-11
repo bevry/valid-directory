@@ -4,6 +4,7 @@
 
 <!-- /TITLE -->
 
+
 <!-- BADGES/ -->
 
 <span class="badge-travisci"><a href="http://travis-ci.com/bevry/valid-directory" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/com/bevry/valid-directory/master.svg" alt="Travis CI Build Status" /></a></span>
@@ -24,11 +25,13 @@
 
 <!-- /BADGES -->
 
+
 <!-- DESCRIPTION/ -->
 
 Check whether or not a directory and its descendants are valid
 
 <!-- /DESCRIPTION -->
+
 
 Validity determined via the [`valid-filename` package](https://github.com/sindresorhus/valid-filename).
 
@@ -75,7 +78,6 @@ To validate your packages before you publish them, you can do the following:
 <h2>Install</h2>
 
 <a href="https://npmjs.com" title="npm is a package manager for javascript"><h3>npm</h3></a>
-
 <h4>Install Globally</h4>
 <ul>
 <li>Install: <code>npm install --global valid-directory</code></li>
@@ -101,6 +103,7 @@ To validate your packages before you publish them, you can do the following:
 
 <!-- /INSTALL -->
 
+
 <!-- HISTORY/ -->
 
 <h2>History</h2>
@@ -109,6 +112,7 @@ To validate your packages before you publish them, you can do the following:
 
 <!-- /HISTORY -->
 
+
 <!-- CONTRIBUTE/ -->
 
 <h2>Contribute</h2>
@@ -116,6 +120,7 @@ To validate your packages before you publish them, you can do the following:
 <a href="https://github.com/bevry/valid-directory/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a>
 
 <!-- /CONTRIBUTE -->
+
 
 <!-- BACKERS/ -->
 
@@ -150,6 +155,7 @@ These amazing people have contributed code to this project:
 <a href="https://github.com/bevry/valid-directory/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a>
 
 <!-- /BACKERS -->
+
 
 <!-- LICENSE/ -->
 
