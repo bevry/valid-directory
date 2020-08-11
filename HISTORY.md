@@ -1,5 +1,11 @@
 # History
 
+## v3.0.0 2020 June 19
+
+-   Converted from JavaScript to TypeScript
+-   If you are using CommonJS, you must now do `require('valid-directory').default`
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v2.8.0 2020 August 4
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
