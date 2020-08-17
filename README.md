@@ -45,7 +45,7 @@ Validity determined via the [`valid-filename` package](https://github.com/sindre
 import validate from 'valid-directory'
 const path = process.cwd()
 validate(path)
-    .then(([isValid, invalidPaths]) => {
+    .then(([valid, invalidPaths]) => {
         if (valid) {
             console.log(path, 'is a valid directory')
         } else {
