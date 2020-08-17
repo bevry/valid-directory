@@ -136,7 +136,7 @@
     }
   },
   "dependencies": {
-    "editions": "^3.16.0",
+    "editions": "^4.0.0",
     "readdir-cluster": "^3.11.0",
     "valid-filename": "^3.1.0"
   },
