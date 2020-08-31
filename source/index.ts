@@ -5,7 +5,9 @@ import validFilename from 'valid-filename'
 export type InvalidPaths = string[]
 
 /** Whether or not the directory was valid */
-export type IsValidDirectory = [false, InvalidPaths] | [true]
+export type ValidateResult =
+	| [valid: false, invalidPaths: InvalidPaths]
+	| [valid: true]
 
 /** Iterator for readdir-cluster that validates the paths using valid-filename */
 export function validator(
@@ -21,7 +23,7 @@ export function validator(
 }
 
 /** Validate a directory and its descendants */
-export default function validate(fullPath: string): Promise<IsValidDirectory> {
+export default function validate(fullPath: string): Promise<ValidateResult> {
 	return new Promise(function (resolve, reject) {
 		const invalidPaths: InvalidPaths = []
 		readdir(fullPath, validator.bind(invalidPaths), function (err: Error) {

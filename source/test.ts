@@ -1,6 +1,6 @@
-import { equal, contains, errorEqual } from 'assert-helpers'
+import { equal, contains } from 'assert-helpers'
 import kava from 'kava'
-import validate, { IsValidDirectory } from './index.js'
+import validate from './index.js'
 
 const pathUtil = require('path')
 const { exec } = require('child_process')
@@ -15,7 +15,7 @@ kava.suite('valid-directory', function (suite) {
 	suite('api', function (suite, test) {
 		test('valid', function (done) {
 			validate(paths.valid)
-				.then(([isValid]: IsValidDirectory) => {
+				.then(([isValid]) => {
 					equal(isValid, true, 'path is valid')
 					done()
 				})
@@ -23,7 +23,7 @@ kava.suite('valid-directory', function (suite) {
 		})
 		test('invalid', function (done) {
 			validate(paths.invalid)
-				.then(([isValid, invalidPaths]: IsValidDirectory) => {
+				.then(([isValid, invalidPaths]) => {
 					equal(isValid, false, 'path is invalid')
 					equal(invalidPaths?.length, 6)
 					done()

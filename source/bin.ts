@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import validate, { IsValidDirectory } from './index.js'
+import validate from './index.js'
 const path = process.argv[2] || process.cwd()
 
 validate(path)
-	.then(([isValid, invalidPaths]: IsValidDirectory) => {
-		if (isValid) {
+	.then(([valid, invalidPaths]) => {
+		if (valid) {
 			console.log(`${path} is valid`)
 		} else {
 			console.error(

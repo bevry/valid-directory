@@ -1,5 +1,10 @@
 # History
 
+## v3.2.0 2020 August 31
+
+-   Updated for TypeScript v4
+    -   Added tuple names for the return type
+
 ## v3.1.0 2020 August 18
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
