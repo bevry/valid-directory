@@ -1,6 +1,6 @@
 {
   "name": "valid-directory",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "Check whether or not a directory and its descendants are valid",
   "homepage": "https://github.com/bevry/valid-directory",
   "license": "MIT",
@@ -8,6 +8,7 @@
     "check",
     "detect",
     "es2019",
+    "esnext",
     "export-default",
     "fs",
     "is",
@@ -95,7 +96,8 @@
         "require"
       ],
       "engines": {
-        "node": "14"
+        "node": "14",
+        "browsers": false
       }
     },
     {
@@ -108,19 +110,21 @@
         "require"
       ],
       "engines": {
-        "node": "10 || 12 || 13 || 14"
+        "node": "10 || 12 || 13 || 14",
+        "browsers": false
       }
     },
     {
-      "description": "TypeScript compiled against ESNext for Node.js with Import for modules",
-      "directory": "edition-node-esm",
+      "description": "TypeScript compiled against ES2019 for Node.js 12 || 13 || 14 with Import for modules",
+      "directory": "edition-es2019-esm",
       "entry": "index.js",
       "tags": [
         "javascript",
+        "es2019",
         "import"
       ],
       "engines": {
-        "node": true,
+        "node": "12 || 13 || 14",
         "browsers": false
       }
     }
@@ -131,7 +135,7 @@
   "main": "index.cjs",
   "exports": {
     "node": {
-      "import": "./edition-node-esm/index.js",
+      "import": "./edition-es2019-esm/index.js",
       "default": "./index.cjs",
       "require": "./edition-esnext/index.js"
     }
@@ -143,15 +147,16 @@
   },
   "devDependencies": {
     "@bevry/update-contributors": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^3.10.1",
-    "@typescript-eslint/parser": "^3.10.1",
-    "assert-helpers": "^7.0.1",
-    "eslint": "^7.7.0",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "assert-helpers": "^7.1.0",
+    "eslint": "^7.8.1",
     "eslint-config-bevry": "^3.19.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "filedirname": "^2.2.0",
     "kava": "^5.11.0",
-    "make-deno-edition": "^1.0.3",
+    "make-deno-edition": "^1.1.0",
     "prettier": "^2.1.1",
     "projectz": "^2.15.0",
     "surge": "^0.21.6",
@@ -160,11 +165,11 @@
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
-    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-es2019 && npm run our:compile:edition-esnext && npm run our:compile:edition-node-esm && npm run our:compile:types",
+    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-es2019 && npm run our:compile:edition-es2019-esm && npm run our:compile:edition-esnext && npm run our:compile:types",
     "our:compile:deno": "make-deno-edition --attempt",
     "our:compile:edition-es2019": "tsc --module commonjs --target ES2019 --outDir ./edition-es2019 --project tsconfig.json && ( test ! -d edition-es2019/source || ( mv edition-es2019/source edition-temp && rm -Rf edition-es2019 && mv edition-temp edition-es2019 ) ) && echo '{\"type\": \"commonjs\"}' > edition-es2019/package.json",
+    "our:compile:edition-es2019-esm": "tsc --module ESNext --target ES2019 --outDir ./edition-es2019-esm --project tsconfig.json && ( test ! -d edition-es2019-esm/source || ( mv edition-es2019-esm/source edition-temp && rm -Rf edition-es2019-esm && mv edition-temp edition-es2019-esm ) ) && echo '{\"type\": \"module\"}' > edition-es2019-esm/package.json",
     "our:compile:edition-esnext": "tsc --module commonjs --target ESNext --outDir ./edition-esnext --project tsconfig.json && ( test ! -d edition-esnext/source || ( mv edition-esnext/source edition-temp && rm -Rf edition-esnext && mv edition-temp edition-esnext ) ) && echo '{\"type\": \"commonjs\"}' > edition-esnext/package.json",
-    "our:compile:edition-node-esm": "tsc --module ESNext --target ESNext --outDir ./edition-node-esm --project tsconfig.json && ( test ! -d edition-node-esm/source || ( mv edition-node-esm/source edition-temp && rm -Rf edition-node-esm && mv edition-temp edition-node-esm ) ) && echo '{\"type\": \"module\"}' > edition-node-esm/package.json",
     "our:compile:types": "tsc --project tsconfig.json --emitDeclarationOnly --declaration --declarationMap --declarationDir ./compiled-types && ( test ! -d compiled-types/source || ( mv compiled-types/source edition-temp && rm -Rf compiled-types && mv edition-temp compiled-types ) )",
     "our:deploy": "echo no need for this project",
     "our:meta": "npm run our:meta:contributors && npm run our:meta:docs && npm run our:meta:projectz",
