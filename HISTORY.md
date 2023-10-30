@@ -1,5 +1,11 @@
 # History
 
+## v3.10.0 2023 October 30
+
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+-   Updated license from [`MIT`](http://spdx.org/licenses/MIT.html) to [`Artistic-2.0`](http://spdx.org/licenses/Artistic-2.0.html)
+-   Swapped out [valid-filename](https://github.com/sindresorhus/valid-filename) for [@bevry/valid-filename](https://github.com/bevry/valid-filename) for greater compatibility
+
 ## v3.9.0 2021 July 31
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)

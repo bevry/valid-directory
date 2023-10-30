@@ -1,5 +1,5 @@
 import readdir from 'readdir-cluster'
-import validFilename from 'valid-filename'
+import isValidFilename from '@bevry/valid-filename'
 
 /** Array of paths that are invalid */
 export type InvalidPaths = string[]
@@ -13,9 +13,9 @@ export type ValidateResult =
 export function validator(
 	this: InvalidPaths,
 	fullPath: string,
-	relativePath: string
+	relativePath: string,
 ) {
-	const valid = validFilename(relativePath)
+	const valid = isValidFilename(relativePath)
 
 	if (!valid) {
 		this.push(fullPath)

@@ -45,7 +45,7 @@ kava.suite('valid-directory', function (suite) {
 						equal(error, null, 'error is null')
 						contains(stdout.toString(), `${paths.valid} is valid`)
 						done()
-					}
+					},
 				)
 			})
 			test('invalid', function (done) {
@@ -55,7 +55,7 @@ kava.suite('valid-directory', function (suite) {
 					function (error, stdout, stderr) {
 						contains(stderr.toString(), `${paths.invalid} is invalid`)
 						done()
-					}
+					},
 				)
 			})
 		})
@@ -68,7 +68,7 @@ kava.suite('valid-directory', function (suite) {
 						equal(error, null, 'error is null')
 						contains(stdout.toString(), `${paths.valid} is valid`)
 						done()
-					}
+					},
 				)
 			})
 			test('invalid', function (done) {
@@ -78,7 +78,7 @@ kava.suite('valid-directory', function (suite) {
 					function (error, stdout, stderr) {
 						contains(stderr.toString(), `${paths.invalid} is invalid`)
 						done()
-					}
+					},
 				)
 			})
 		})
