@@ -1,5 +1,12 @@
 # History
 
+## v4.0.0 2023 October 30
+
+-   API now returns all paths as the third argument
+-   Make the tests work on Windows
+-   Swapped out [readdir-cluster](https://github.com/bevry/readdir-cluster) for `recursive: true` in [`readdir` builtin](https://github.com/bevry/readdir-cluster) to solve `ERR_IPC_CHANNEL_CLOSED` errors
+    -   This requires Node.js versions >= 18 for recursive support
+
 ## v3.10.0 2023 October 30
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)

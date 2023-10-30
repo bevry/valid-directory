@@ -1,39 +1,27 @@
-import readdir from 'readdir-cluster'
+import { readdir } from 'node:fs/promises'
+import { basename } from 'node:path'
 import isValidFilename from '@bevry/valid-filename'
 
 /** Array of paths that are invalid */
-export type InvalidPaths = string[]
+export type Paths = string[]
 
 /** Whether or not the directory was valid */
 export type ValidateResult =
-	| [valid: false, invalidPaths: InvalidPaths]
-	| [valid: true]
-
-/** Iterator for readdir-cluster that validates the paths using valid-filename */
-export function validator(
-	this: InvalidPaths,
-	fullPath: string,
-	relativePath: string,
-) {
-	const valid = isValidFilename(relativePath)
-
-	if (!valid) {
-		this.push(fullPath)
-	}
-}
+	| [valid: false, invalidRelativePaths: Paths, relativePaths: Paths]
+	| [valid: true, invalidRelativePaths: [], relativePaths: Paths]
 
 /** Validate a directory and its descendants */
-export default function validate(fullPath: string): Promise<ValidateResult> {
-	return new Promise(function (resolve, reject) {
-		const invalidPaths: InvalidPaths = []
-		readdir(fullPath, validator.bind(invalidPaths), function (err: Error) {
-			if (err) {
-				return reject(err)
-			} else if (invalidPaths.length) {
-				return resolve([false, invalidPaths])
-			} else {
-				return resolve([true])
-			}
-		})
-	})
+export default async function validate(
+	fullPath: string,
+): Promise<ValidateResult> {
+	// https://nodejs.org/api/fs.html#fspromisesreaddirpath-options
+	const relativePaths: Paths = await readdir(fullPath, { recursive: true })
+	const invalidRelativePaths: Paths = relativePaths.filter(
+		(relativePath) => !isValidFilename(basename(relativePath)),
+	)
+	if (invalidRelativePaths.length) {
+		return [false, invalidRelativePaths, relativePaths]
+	} else {
+		return [true, [], relativePaths]
+	}
 }

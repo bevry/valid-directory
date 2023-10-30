@@ -12,6 +12,7 @@ validate(path)
 				`${path} is invalid, due to the following paths:\n`,
 				invalidPaths,
 			)
+			process.exitCode = 1
 		}
 	})
 	.catch((err) => {

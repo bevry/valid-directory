@@ -34,6 +34,8 @@ Check whether or not a directory and its descendants are valid
 
 Validity determined via the [`@bevry/valid-filename` package](https://github.com/bevry/valid-filename).
 
+Requires Node.js version >= 18 for recursive directory support.
+
 ## Usage
 
 [Complete API Documentation.](http://master.valid-directory.bevry.surge.sh/docs/)
@@ -63,7 +65,7 @@ validate(path)
 
 Run `npm install -g valid-directory` then run against the current working directory with `valid-directory` or a specified directory via `valid-directory <path>`.
 
-Exit code will be `1` if validation failed to execute, `2` if validation failed, and `0` if validation passed.
+Exit code will be `1` if a path is invalid, `2` if something went wrong, and `0` if validation passed.
 
 ### Packages
 
