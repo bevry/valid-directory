@@ -12,12 +12,12 @@ export type ValidateResult =
 
 /** Validate a directory and its descendants */
 export default async function validate(
-	fullPath: string,
+	fullPath: string
 ): Promise<ValidateResult> {
 	// https://nodejs.org/api/fs.html#fspromisesreaddirpath-options
 	const relativePaths: Paths = await readdir(fullPath, { recursive: true })
 	const invalidRelativePaths: Paths = relativePaths.filter(
-		(relativePath) => !isValidFilename(basename(relativePath)),
+		(relativePath) => !isValidFilename(basename(relativePath))
 	)
 	if (invalidRelativePaths.length) {
 		return [false, invalidRelativePaths, relativePaths]

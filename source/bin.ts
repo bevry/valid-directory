@@ -10,7 +10,7 @@ validate(path)
 		} else {
 			console.error(
 				`${path} is invalid, due to the following paths:\n`,
-				invalidPaths,
+				invalidPaths
 			)
 			process.exitCode = 1
 		}

@@ -53,7 +53,7 @@ validate(path)
             console.log(
                 path,
                 'is an INVALID directory due to these:',
-                invalidPaths,
+                invalidPaths
             )
             process.exit(1)
         }
