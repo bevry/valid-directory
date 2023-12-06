@@ -13,7 +13,7 @@ const [file, dir] = filedirname()
 const fixtures = resolve(
 	tmpdir(),
 	'valid-directory',
-	`fixtures - ${Math.random()}`
+	`fixtures - ${Math.random()}`,
 )
 const paths = {
 	root: resolve(dir, '..'),
@@ -49,9 +49,9 @@ kava.suite('valid-directory', function (suite, test) {
 				.map((filename) => writeFile(resolve(paths.invalid, filename), ''))
 				.concat(
 					validPaths.map((filename) =>
-						writeFile(resolve(paths.valid, filename), '')
-					)
-				)
+						writeFile(resolve(paths.valid, filename), ''),
+					),
+				),
 		)
 			.then(() => done())
 			.catch(done)
@@ -73,7 +73,7 @@ kava.suite('valid-directory', function (suite, test) {
 					deepEqual(
 						_invalidPaths.sort(),
 						invalidPaths,
-						'invalid paths are correct'
+						'invalid paths are correct',
 					)
 					deepEqual(_allPaths.sort(), invalidPaths, 'all paths are correct')
 					equal(isValid, !invalidPaths.length, 'only valid paths') // windows adjustment
@@ -87,7 +87,7 @@ kava.suite('valid-directory', function (suite, test) {
 					deepEqual(
 						_invalidPaths.sort(),
 						invalidPathsNested,
-						'invalid paths are correct'
+						'invalid paths are correct',
 					)
 					deepEqual(_allPaths.sort(), allPathsNested, 'all paths are correct')
 					equal(isValid, !invalidPaths.length, 'only valid paths') // windows adjustment
@@ -106,7 +106,7 @@ kava.suite('valid-directory', function (suite, test) {
 						equal(error, null, 'error is null')
 						contains(stdout.toString(), `${paths.valid} is valid`)
 						done()
-					}
+					},
 				)
 			})
 			// windows adjustment
@@ -118,7 +118,7 @@ kava.suite('valid-directory', function (suite, test) {
 						function (error, stdout, stderr) {
 							contains(stderr.toString(), `${paths.invalid} is invalid`)
 							done()
-						}
+						},
 					)
 				})
 			}
@@ -132,7 +132,7 @@ kava.suite('valid-directory', function (suite, test) {
 						equal(error, null, 'error is null')
 						contains(stdout.toString(), `${paths.valid} is valid`)
 						done()
-					}
+					},
 				)
 			})
 			// windows adjustment
@@ -144,7 +144,7 @@ kava.suite('valid-directory', function (suite, test) {
 						function (error, stdout, stderr) {
 							contains(stderr.toString(), `${paths.invalid} is invalid`)
 							done()
-						}
+						},
 					)
 				})
 			}

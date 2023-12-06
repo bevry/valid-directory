@@ -54,7 +54,7 @@ validate(path)
             console.log(
                 path,
                 'is an INVALID directory due to these:',
-                invalidPaths
+                invalidPaths,
             )
             process.exit(1)
         }
@@ -96,7 +96,7 @@ To validate your packages before you publish them, you can do the following:
 <a href="https://deno.land" title="Deno is a secure runtime for JavaScript and TypeScript, it is an alternative for Node.js"><h3>Deno</h3></a>
 
 ``` typescript
-import pkg from 'https://unpkg.com/valid-directory@^4.6.0/edition-deno/index.ts'
+import pkg from 'https://unpkg.com/valid-directory@^4.7.0/edition-deno/index.ts'
 ```
 
 <h3><a href="https://editions.bevry.me" title="Editions are the best way to produce and consume packages you care about.">Editions</a></h3>
