@@ -20,7 +20,7 @@ jobs:
       ${{ contains('16', matrix.node) || contains('macos-latest windows-latest',
       matrix.os) }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install Deno
         uses: denoland/setup-deno@v2
         with:
@@ -51,7 +51,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install Deno
         uses: denoland/setup-deno@v2
         with:
